@@ -1,0 +1,84 @@
+<div class="bg-white rounded-lg shadow p-8">
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col">
+      <span class="text-2xl font-black">Tambah Admin</span>
+      <span class="">Masukan data untuk menambahkan Admin!</span>
+    </div>
+    <form class="flex flex-col w-full gap-3" [formGroup]="form" (submit)="submit()">
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="name" class="mb-1">Nama :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="name?.touched && name?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan name" class="w-full" formControlName="name" id="name">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="name?.touched && name?.invalid">*nama dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="username" class="mb-1">username :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="username?.touched && username?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan username" class="w-full" formControlName="username" id="username">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="username?.touched && username?.invalid">*username dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="email" class="mb-1">Email :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="email?.touched && email?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan Email" class="w-full" formControlName="email" id="email">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="email?.touched && email?.invalid">*email dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="password" class="mb-1">Kata Sandi :</label>
+        <div class="flex flex-row place-items-center justify-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="password?.touched && password?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input [type]="isPassword ? 'password' : 'text'" placeholder="Masukan Kata Sandi" class="w-full" formControlName="password" id="password" class="flex-1">
+          <button type="button" class="w-fit hover:text-blue-500 px-3 py-2" (click)="isPassword = !isPassword ">
+            <i class="fa-solid fa-eye" *ngIf="isPassword"></i>
+            <i class="fa-solid fa-eye-slash" *ngIf="!isPassword"></i>
+          </button>
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="password?.touched && password?.invalid">*kata sandi dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200 relative">
+        <label class="mb-1">Role :</label>
+        <button type="button" class="px-4 py-2 rounded-lg border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200" (click)="drawerToggle()" [ngClass]="drawer ? 'border-blue-500' : 'border-gray-400'">
+          <span class="flex flex-row justify-between">
+            <span>{{ role }}</span>
+            <span><i class="fa-solid fa-caret-down"></i></span>
+          </span>
+        </button>
+        <ul class="absolute z-20 left-0 top-[110%] bg-white shadow rounded-lg py-2 w-full" *ngIf="drawer">
+          <li class="px-4 py-2 hover:bg-blue-200" (click)="changeRole('operator-user')">
+            <span>operator-user</span>
+          </li>
+          <li class="px-4 py-2 hover:bg-blue-200" (click)="changeRole('operator-device')">
+            <span>operator-device</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-row justify-end gap-3">
+        <button type="button" (click)="back()" class="px-4 py-2 mt-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <span>BATAL</span>
+          </div>
+        </button>
+        <button type="submit" class="px-4 py-2 mt-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <i class="fa-solid fa-spinner animate-spin" *ngIf="status == rawStatus.loading"></i>
+            <span>{{ status == rawStatus.loading ? 'Mengunggah..' : 'TAMBAH' }}</span>
+          </div>
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>

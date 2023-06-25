@@ -1,0 +1,39 @@
+<div class="bg-white h-full shadow rounded-lg min-h-[100px] overflow-x-auto">
+  <div class="flex flex-col gap-3 p-5">
+    <div class="flex flex-row place-items-center justify-between">
+      <span>Pengguna didaftarkan</span>
+      <div class="relative select-none">
+        <button class="flex flex-row place-items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow"
+          (click)="drawerToggler()">
+          <span>{{ current }}</span>
+          <i class="fa-solid fa-caret-down text-xl"></i>
+        </button>
+        <ul class="absolute right-0 top-[110%] rounded bg-white shadow py-2 z-20" *ngIf="drawer">
+          <ng-container *ngFor="let item of dateType">
+            <li class="px-4 py-2 hover:bg-blue-200" (click)="changeDate(item)">
+              {{ item }}
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <canvas *ngIf="status == rawStatus.initial" baseChart
+        [type]="'line'"
+        [data]="chartData"
+        [options]="chartOption"
+        [legend]="chartLegend">
+    </canvas>
+    <div
+      class="h-full w-full flex flex-col justify-center place-items-center text-gray-700 py-5"
+      *ngIf="status == rawStatus.error">
+      <i class="fa-solid fa-triangle-exclamation text-4xl text-red-500"></i>
+      <span>Gagal memuat data</span>
+      <button type="button" (click)="read()"
+        class="px-4 py-2 rounded-lg self-center w-fit text-blue-500 hover:text-blue-600 font-bold hover:scale-105 transition-all duration-200">
+        <div class="flex flex-row justify-center place-items-center gap-2">
+          <span>REFRESH</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="h-screen w-screen text-gray-700">
+  <div class="grid grid-cols-12 h-full">
+    <div class="hidden lg:flex lg:col-span-5 xl:col-span-6 2xl:col-span-7 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+    <div class="col-span-12 lg:col-span-7 xl:col-span-6 2xl:col-span-5 relative">
+      <div class="fixed  bottom-5 right-5 z-50">
+        <app-notification></app-notification>
+      </div>
+      <div class="flex flex-col h-full justify-center px-10 md:px-32 gap-5">
+        <div class="flex flex-col">
+          <span class="text-2xl font-black">Daftar Untuk Masuk!</span>
+          <span class="">Isi data yang dibutuhkan untuk mendaftar!</span>
+
+        </div>
+        <form class="flex flex-col w-full gap-3" [formGroup]="form" (submit)="submit()">
+
+          <div class="flex flex-col focus-within:scale-105 transition-all duration-200">
+            <label for="name" class="mb-1">Nama :</label>
+            <div class="flex flex-row place-items-center border-[2px] transition-all duration-200 rounded-lg"
+              [ngClass]="name?.touched && name?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+              <input type="text" placeholder="Masukan Nama" formControlName="name" id="name">
+            </div>
+            <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="name?.touched && name?.invalid">*nama dibutuhkan!</span>
+          </div>
+
+          <div class="flex flex-col focus-within:scale-105 transition-all duration-200">
+            <label for="email" class="mb-1">Email :</label>
+            <div class="flex flex-row place-items-center border-[2px] transition-all duration-200 rounded-lg"
+              [ngClass]="email?.touched && email?.invalid || email?.hasError('email') ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+              <input type="text" placeholder="Masukan Email" formControlName="email" id="email">
+            </div>
+            <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="email?.touched && email?.hasError('required')">*email dibutuhkan!</span>
+            <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="email?.hasError('email')">*email tidak valid!</span>
+          </div>
+
+          <div class="flex flex-col focus-within:scale-105 transition-all duration-200">
+            <label for="username" class="mb-1">Username :</label>
+            <div class="flex flex-row place-items-center border-[2px] transition-all duration-200 rounded-lg"
+              [ngClass]="username?.touched && username?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+              <input type="text" placeholder="Masukan Username" formControlName="username" id="username">
+            </div>
+            <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="username?.touched && username?.invalid">*username dibutuhkan!</span>
+          </div>
+
+          <div class="flex flex-col focus-within:scale-105 transition-all duration-200">
+            <label for="password" class="mb-1">Kata Sandi :</label>
+            <div class="flex flex-row place-items-center justify-center border-[2px] transition-all duration-200 rounded-lg"
+              [ngClass]="password?.touched && password?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+              <input [type]="isPassword ? 'password' : 'text'" placeholder="Masukan Kata Sandi" formControlName="password" id="password" class="flex-1">
+              <button class="w-fit hover:text-blue-500 px-3 py-2" (click)="isPassword = !isPassword ">
+                <i class="fa-solid fa-eye" *ngIf="isPassword"></i>
+                <i class="fa-solid fa-eye-slash" *ngIf="!isPassword"></i>
+              </button>
+            </div>
+            <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="password?.touched && password?.invalid">*kata sandi dibutuhkan!</span>
+          </div>
+
+          <button type="submit" class="px-4 py-2 mt-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-bold hover:scale-105 transition-all duration-200">
+            <div class="flex flex-row justify-center place-items-center gap-2">
+              <i class="fa-solid fa-spinner animate-spin" *ngIf="isLoading"></i>
+              <span>{{ isLoading ? 'Mengunggah..' : 'DAFTAR' }}</span>
+            </div>
+          </button>
+
+          <button type="button" (click)="changePage()" class="px-4 py-2 rounded-lg self-center w-fit text-blue-500 hover:text-blue-600 font-bold hover:scale-105 transition-all duration-200">
+            <div class="flex flex-row justify-center place-items-center gap-2">
+              <span>MASUK</span>
+            </div>
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

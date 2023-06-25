@@ -1,0 +1,44 @@
+<app-home>
+
+  <div class="flex flex-col text-gray-700">
+
+    <div class="flex flex-row justify-between place-items-center">
+      <div class="flex flex-col py-10">
+        <span class="font-bold text-white text-3xl">DASHBOARD</span>
+        <span class="font-normal text-white text-lg">home > dashboard</span>
+      </div>
+    </div>
+
+    <div class="h-full w-full flex flex-col justify-center place-items-center" *ngIf="status == rawStatus.loading">
+      <i class="fa-solid fa-spinner animate-spin text-2xl text-white"></i>
+    </div>
+
+    <div class="h-full w-full flex flex-col" *ngIf="status == rawStatus.initial">
+
+      <div class="grid grid-cols-12 gap-5">
+        <div class="col-span-12 lg:col-span-6">
+          <app-chart-created-admin ></app-chart-created-admin>
+
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <app-chart-created ></app-chart-created>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div
+      class="h-full w-full flex flex-col justify-center place-items-center text-gray-700 bg-white shadow rounded-lg py-5"
+      *ngIf="status == rawStatus.error">
+      <i class="fa-solid fa-triangle-exclamation text-4xl text-red-500"></i>
+      <span>Gagal memuat data</span>
+      <button type="button"
+        class="px-4 py-2 rounded-lg self-center w-fit text-blue-500 hover:text-blue-600 font-bold hover:scale-105 transition-all duration-200">
+        <div class="flex flex-row justify-center place-items-center gap-2">
+          <span>REFRESH</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</app-home>

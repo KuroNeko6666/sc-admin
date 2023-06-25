@@ -1,0 +1,62 @@
+<div class="bg-white rounded-lg shadow p-8">
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col">
+      <span class="text-2xl font-black">Tambah Perangkat</span>
+      <span class="">Masukan data untuk menambahkan Perangkat!</span>
+    </div>
+    <form class="flex flex-col w-full gap-3" [formGroup]="form" (submit)="submit()">
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="model" class="mb-1">Model :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="model?.touched && model?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan model" class="w-full" formControlName="model" id="model">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="model?.touched && model?.invalid">*model dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="address" class="mb-1">Alamat :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="address?.touched && address?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan Alamat" class="w-full" formControlName="address" id="address">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="address?.touched && address?.invalid">*alamat dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="city" class="mb-1">Kota :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="city?.touched && city?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan Kota" class="w-full" formControlName="city" id="city">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="city?.touched && city?.invalid">*kota dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="province" class="mb-1">Provinsi :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="province?.touched && province?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan Provinsi" class="w-full" formControlName="province" id="province">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="province?.touched && province?.invalid">*provinsi dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-row justify-end gap-3">
+        <button type="button" (click)="back()" class="px-4 py-2 mt-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <span>BATAL</span>
+          </div>
+        </button>
+        <button type="submit" class="px-4 py-2 mt-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <i class="fa-solid fa-spinner animate-spin" *ngIf="status == rawStatus.loading"></i>
+            <span>{{ status == rawStatus.loading ? 'Mengunggah..' : 'UBAH' }}</span>
+          </div>
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>

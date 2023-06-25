@@ -1,0 +1,69 @@
+<div class="py-10 grid grid-cols-12 gap-5 text-gray-700">
+  <div class="col-span-12 lg:col-span-4">
+    <div class="bg-white shadow p-5 rounded-lg">
+      <div class="flex flex-col gap-5 p-5 justify-between">
+        <span class="font-bold text-xl">Detail Perangkat</span>
+        <div class="flex flex-col flex-1">
+          <div class="flex flex-row justify-between">
+            <span class="text-gray-500">ID</span>
+            <span class="font-bold">{{ device?.id }}</span>
+          </div>
+          <div class="flex flex-row justify-between">
+            <span class="text-gray-500">Model</span>
+            <span class="font-bold">{{ device?.model }}</span>
+          </div>
+          <div class="flex flex-row justify-between">
+            <span class="text-gray-500">Alamat</span>
+            <span class="font-bold">{{ device?.address?.address }}</span>
+          </div>
+          <div class="flex flex-row justify-between">
+            <span class="text-gray-500">Kota</span>
+            <span class="font-bold">{{ device?.address?.city }}</span>
+          </div>
+          <div class="flex flex-row justify-between">
+            <span class="text-gray-500">Provinsi</span>
+            <span class="font-bold">{{ device?.address?.province }}</span>
+          </div>
+        </div>
+        <div class="flex flex-row justify-end gap-2">
+          <button class="px-4 py-2 rounded bg-red-500 hover:bg-red-600 text-white flex flex-row gap-2 justify-center place-items-center" (click)="back()">
+            <i class="fa-solid fa-caret-left"></i>
+            <span>Back</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-span-12 lg:col-span-8">
+    <div class="bg-white shadow p-5 rounded-lg">
+      <div class="flex flex-col gap-5">
+        <span class="font-bold text-xl">Dimana perangkat ini ?</span>
+        <div class="mapouter rounded">
+          <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+              marginheight="0" marginwidth="0"
+              src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Bandung&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+              href="https://embed-googlemap.com">google maps code generator</a></div>
+          <style>
+            .mapouter {
+              position: relative;
+              text-align: right;
+              width: 100%;
+              height: 400px;
+            }
+
+            .gmap_canvas {
+              overflow: hidden;
+              background: none !important;
+              width: 100%;
+              height: 400px;
+            }
+
+            .gmap_iframe {
+              height: 400px !important;
+            }
+          </style>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

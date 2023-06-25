@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-2">
+  <ng-container *ngFor="let item of data">
+    <div class="px-5 py-3 rounded-lg shadow max-w-lg" [ngClass]="item.status == 'success' ? 'bg-green-500' : item.status == 'failure' ? 'bg-red-500' : 'bg-yellow-500'">
+      <div class="flex flex-row text-white font-bold place-items-center gap-3">
+        <span>{{ item.message }}</span>
+        <i class="fa-solid fa-xmark hover:text-red-500" (click)="delete(item.id ?? '')"></i>
+      </div>
+    </div>
+  </ng-container>
+</div>

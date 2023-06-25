@@ -1,0 +1,75 @@
+<div class="w-full h-20 fixed z-10 select-none transition-colors duration-500 shadow"
+  [ngClass]="scrollDown ? 'bg-white ' : 'bg-transparent shadow-transparent '">
+  <div class="mx-auto h-full  max-w-[1080px] 2xl:max-w-[1450px] px-5 md:px-10 xl:px-0">
+    <div class="flex flex-row h-full place-items-center gap-5">
+      <button class="rounded-lg hover:bg-opacity-10 w-fit md:hidden"
+        [ngClass]="scrollDown ? 'hover:bg-blue-500' : 'hover:bg-white'" (click)="sidebar()">
+        <div class="px-4 py-3">
+          <span class="font-bold text-lg">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </span>
+        </div>
+      </button>
+      <div class="h-14 w-14 bg-contain bg-no-repeat bg-center transition-all duration-500 hidden md:block"
+        [ngClass]="scrollDown ? logo[0] : logo[1]"></div>
+      <ul class="flex-1 md:flex flex-row gap-2 hidden">
+        <li class="rounded-lg w-fit"
+        [ngClass]="{'bg-white bg-opacity-10 ' : (current?.includes('/dashboard') && !scrollDown), 'bg-blue-100 ' : (current?.includes('/dashboard') && scrollDown), 'hover:bg-white hover:bg-opacity-10 text-white' : !scrollDown, 'hover:bg-blue-100 text-gray-700' : scrollDown}"
+          (click)="changePage('/dashboard')">
+          <div class="px-4 py-3">
+            <span class="font-bold">Dashboard</span>
+          </div>
+        </li>
+        <li class="rounded-lg w-fit"
+        [ngClass]="{'bg-white bg-opacity-10 ' : (current?.includes('/device') && !scrollDown), 'bg-blue-100 ' : (current?.includes('/device') && scrollDown), 'hover:bg-white hover:bg-opacity-10 text-white' : !scrollDown, 'hover:bg-blue-100 text-gray-700' : scrollDown}"
+          (click)="changePage('/device')">
+          <div class="px-4 py-3">
+            <span class="font-bold">Perangkat</span>
+          </div>
+        </li>
+        <li class="rounded-lg w-fit"
+        [ngClass]="{'bg-white bg-opacity-10 ' : (current?.includes('/admin')&& !scrollDown), 'bg-blue-100 ' : (current?.includes('/admin')&& scrollDown), 'hover:bg-white hover:bg-opacity-10 text-white' : !scrollDown, 'hover:bg-blue-100 text-gray-700' : scrollDown}"
+          (click)="changePage('/admin')">
+          <div class="px-4 py-3">
+            <span class="font-bold">Admin</span>
+          </div>
+        </li>
+        <li class="rounded-lg w-fit"
+        [ngClass]="{'bg-white bg-opacity-10 ' : (current?.includes('/user')&& !scrollDown), 'bg-blue-100 ' : (current?.includes('/user')&& scrollDown), 'hover:bg-white hover:bg-opacity-10 text-white' : !scrollDown, 'hover:bg-blue-100 text-gray-700' : scrollDown}"
+          (click)="changePage('/user')">
+          <div class="px-4 py-3">
+            <span class="font-bold">Pengguna</span>
+          </div>
+        </li>
+        <li class="rounded-lg w-fit"
+        [ngClass]="{'bg-white bg-opacity-10 ' : (current?.includes('/order')&& !scrollDown), 'bg-blue-100 ' : (current?.includes('/order')&& scrollDown), 'hover:bg-white hover:bg-opacity-10 text-white' : !scrollDown, 'hover:bg-blue-100 text-gray-700' : scrollDown}"
+          (click)="changePage('/order')">
+          <div class="px-4 py-3">
+            <span class="font-bold">Order</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="flex-1 flex flex-row gap-2 justify-end place-items-center">
+
+        <li class="rounded-lg hover:bg-opacity-10 w-fit relative"
+          [ngClass]="scrollDown ? 'hover:bg-blue-500 text-gray-700' : 'hover:bg-white text-white'">
+          <div (click)="onProfile()"  class="px-4 py-3 flex flex-row place-items-center gap-3">
+            <span class="">Hi, <span class="font-bold">{{ user?.name }}</span></span>
+            <div alt="" class="object-cover w-8 h-8 bg-blue-500 rounded"
+              [ngClass]="scrollDown ? 'border-2' : ''"></div>
+          </div>
+          <ul class="absolute z-20 right-0 top-[105%] bg-white flex flex-col py-2 rounded-lg" *ngIf="profile">
+            <li class="px-4 py-2 hover:bg-blue-100 text-gray-700 flex flex-row justify-start place-items-center gap-2">
+              <i class="fa-solid fa-gear text-lg"></i>
+              <span>Pengaturan</span>
+            </li>
+            <li class="px-4 py-2 hover:bg-blue-100 text-gray-700 flex flex-row justify-start place-items-center gap-2" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket text-lg"></i>
+              <span>Keluar</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

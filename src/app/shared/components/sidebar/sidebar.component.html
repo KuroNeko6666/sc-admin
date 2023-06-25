@@ -1,0 +1,24 @@
+<div class="w-[60%] h-full fixed left-0 right-0 shadow-lg bg-white z-20 transition-all duration-500 -translate-x-0 md:-translate-x-full" [ngClass]="show ? '-translate-x-0 md:-translate-x-full' : '-translate-x-full'">
+  <div class="flex flex-col h-full relative">
+    <button class="px-3 py-2 absolute right-0 rounded top-0 hover:bg-red-100" (click)="close()">
+      <i class="fa-solid fa-circle-xmark"></i>
+    </button>
+    <div class="h-[15%] w-full flex flex-col justify-center place-items-center">
+      <div class="h-20 w-20 bg-no-repeat bg-center bg-contain" [ngClass]="logo[0]"></div>
+    </div>
+    <ul class="flex flex-col">
+      <li class="px-5 py-3 flex flex-row gap-3 place-items-center hover:bg-blue-100" (click)="changePage('/dashboard')" [ngClass]="{'bg-blue-100' : current == '/dashboard'}">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+      </li>
+      <li class="px-5 py-3 flex flex-row gap-3 place-items-center hover:bg-blue-100" (click)="changePage('/device')"  [ngClass]="{'bg-blue-100' : current == '/device'}">
+        <i class="fa-solid fa-microchip"></i>
+        <span>Device</span>
+      </li>
+      <li class="px-5 py-3 flex flex-row gap-3 place-items-center hover:bg-blue-100" (click)="changePage('/market')"  [ngClass]="{'bg-blue-100' : current == '/market'}">
+        <i class="fa-solid fa-shop"></i>
+        <span>Market</span>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="bg-white rounded-lg shadow p-8">
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col">
+      <span class="text-2xl font-black">Tambah Admin</span>
+      <span class="">Masukan data untuk menambahkan Admin!</span>
+    </div>
+    <form class="flex flex-col w-full gap-3" [formGroup]="form" (submit)="submit()">
+
+      <div class="flex flex-col focus-within:scale-[102%] transition-all duration-200">
+        <label for="name" class="mb-1">Nama :</label>
+        <div class="flex flex-row place-items-center border-[1px] md:border-[2px] 2xl:border-[3px] transition-all duration-200 rounded-lg"
+          [ngClass]="name?.touched && name?.invalid ? 'focus-within:border-red-500 border-red-500' : 'focus-within:border-blue-500 border-gray-400'">
+          <input type="text" placeholder="Masukan name" formControlName="name" id="name" class="w-full">
+        </div>
+        <span class="px-3 mt-1 text-red-500 text-sm" *ngIf="name?.touched && name?.invalid">*nama dibutuhkan!</span>
+      </div>
+
+      <div class="flex flex-row justify-end gap-3">
+        <button type="button" (click)="back()" class="px-4 py-2 mt-2 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <span>BATAL</span>
+          </div>
+        </button>
+        <button type="submit" class="px-4 py-2 mt-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-bold hover:scale-[102%] transition-all duration-200">
+          <div class="flex flex-row justify-center place-items-center gap-2">
+            <i class="fa-solid fa-spinner animate-spin" *ngIf="status == rawStatus.loading"></i>
+            <span>{{ status == rawStatus.loading ? 'Mengunggah..' : 'UPDATE' }}</span>
+          </div>
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
