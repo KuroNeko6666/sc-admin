@@ -1,6 +1,6 @@
 export const environment = {
   api: {
-    host: "http://localhost:8080/api/admin",
+    host: "http://localhost:8000/api/admin",
     path: {
       auth: "/auth",
       device: "/device",
