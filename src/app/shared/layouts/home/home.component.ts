@@ -56,5 +56,7 @@ export class HomeComponent {
 
   public onLogout(): void {
     this.service.logout()
+    this.router.navigateByUrl("/login")
+
   }
 }
