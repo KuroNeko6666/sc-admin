@@ -18,7 +18,7 @@ export class DeviceService {
 
   read(params: HttpParams): Observable<IPage<IDevice[]>> {
     let url: string = [this.host, this.path].join('')
-    return this.client.get<IPage<IDevice[]>>(url, { params: params})
+    return this.client.get<IPage<IDevice[]>>(url, { params: params, withCredentials:true})
   }
 
   find(id: string): Observable<IBase<IDevice>> {
