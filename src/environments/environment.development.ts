@@ -1,6 +1,6 @@
 export const environment = {
   api: {
-    host: "http://188.166.245.130:8000/api/admin",
+    host: "https://be-sc.mareca.vc/api/admin",
     path: {
       auth: "/auth",
       device: "/device",
